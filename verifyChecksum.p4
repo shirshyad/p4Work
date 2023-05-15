@@ -1,6 +1,7 @@
 
 // {C} Copyright 2023 AMD Inc. All rights reserved
 
+
 parser Parser (packet_in packet,
                inout intr_global_h intr_global,
                out ingress_headers hdr,
@@ -19,6 +20,14 @@ parser Parser (packet_in packet,
     bit<16> icmp_2_hdr_offset;  // Icmp offset
     bit<16> ipv4_2_len;         // v4 len
     bit<16> l4_2_len;           // L4 len
+
+    checksum16() ipv4HdrCsum_1;
+    checksum16() ipv4HdrCsum_2;
+    checksum16() udpCsum_1;
+    checksum16() icmpv4Csum_1;
+    checksum16() icmpv6Csum_1;
+    checksum16() tcpCsum_1;
+    checksum16() udpCsum_2;
 
     // In order to highlight checksum, only relevant portions
     // if parser states are listed below not from the begining of start() state.
@@ -211,7 +220,6 @@ parser Parser (packet_in packet,
     state parse_ipv4_base_2 {
         packet.extract(hdr.ip_u_2.ipv4);
         ipv4_2_len = ((bit<16>) hdr.ip_u_2.ipv4.ihl << 2);
-
         transition parse_ipv4_checksum_2;
     }
 
