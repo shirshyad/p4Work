@@ -1,14 +1,14 @@
 // {C} Copyright 2023 AMD Inc. All rights reserved
 
-checksum16 l2CsumEg;
-checksum16 ipv4HdrCsum_0;
-checksum16 ipv4HdrCsum_1;
-checksum16 ipv4HdrCsum_2;
-checksum16 udpCsum_1;
-checksum16 icmpv4Csum_1;
-checksum16 icmpv6Csum_1;
-checksum16 tcpCsum_1;
-checksum16 udpCsum_2;
+checksum16() l2CsumEg;
+checksum16() ipv4HdrCsum_0;
+checksum16() ipv4HdrCsum_1;
+checksum16() ipv4HdrCsum_2;
+checksum16() udpCsum_1;
+checksum16() icmpv4Csum_1;
+checksum16() icmpv6Csum_1;
+checksum16() tcpCsum_1;
+checksum16() udpCsum_2;
 
 control P4Deparser(packet_out packet,
                        inout intr_global_h intr_global,
